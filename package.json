@@ -9,8 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@material-tailwind/react": "^1.0.4",
+    "@mui/material": "^5.8.4",
     "@rainbow-me/rainbowkit": "^0.3.0",
     "ethers": "^5.6.8",
+    "moment": "^2.29.3",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0",

@@ -1,63 +1,50 @@
 import React from "react";
 import PropTypes from "prop-types";
 import DonationProject from "../DonationProject";
+import useTotalRequests from "../../hooks/useTotalRequests";
+import { useState, useEffect } from "react";
 
 function ViewDonationProject(props) {
+  //contract hook
+  const { requests } = useTotalRequests();
+  //state var for handling hydration issues of requests hook on preRender and firstRender
+  const [reqs, setReqs] = useState("0");
 
-  const projects = [{
-    description: "description here",
-    recipientAdrress: "0x4783763333",
-    totalAmountNeeded: "100 wei",
-    isFunded: false,
-    NoOfVoters: "0"
-  },
-  {
-    description: "description here",
-    recipientAdrress: "0x4783763333",
-    totalAmountNeeded: "100 wei",
-    isFunded: false,
-    NoOfVoters: "0"
-  },
-  {
-    description: "description here",
-    recipientAdrress: "0x4783763333",
-    totalAmountNeeded: "100 wei",
-    isFunded: false,
-    NoOfVoters: "0"
-  },
-  {
-    description: "description here",
-    recipientAdrress: "0x4783763333",
-    totalAmountNeeded: "100 wei",
-    isFunded: false,
-    NoOfVoters: "0"
-  }]
+  useEffect(() => {
+    setReqs(requests);
+  }, [requests]);
 
   return (
-    <section className="text-gray-600 body-font">
-      <div className="container px-5 py-24 mx-auto">
-        <h1 className="sm:text-3xl text-2xl font-medium title-font text-center text-gray-900 mb-20">
-          Donation Proposal Requests<br className="hidden sm:block" />
-          Donate to become part of decentrailzed funds raising compaign
-        </h1>
-        <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
-          {/* map donation projects here */}
-          {
-            projects.map(({ description, recipientAdrress, totalAmountNeeded, isFunded, NoOfVoters }, i) =>
-              <DonationProject Key={i} theme="indigo" description={description} recipientAdrress={recipientAdrress} totalAmountNeeded={totalAmountNeeded} isFunded={isFunded} NoOfVoters={NoOfVoters} />)
-          }
+    <section className="text-gray-400 bg-gray-900 body-font  lg:h-hero-height">
+      <div className="container bg-gray-900 px-5 py-24 mx-auto flex flex-wrap">
+        <div className="flex  flex-col text-center w-full mb-20">
+          <h2
+            className={`text-xs text-${props.theme}-400 tracking-widest font-medium title-font mb-1`}
+          >
+            Donation Proposal Requests
+          </h2>
+          <h1 className="sm:text-3xl text-2xl font-medium title-font text-white">
+            Donate to become part of decentrailzed funds raising compaign
+          </h1>
         </div>
+        {Array(Number(reqs))
+          ?.fill(1)
+          ?.map((x, i) => (
+            <div key={i}>
+              <DonationProject theme="indigo" req_id={i} />
+            </div>
+          ))}
       </div>
     </section>
   );
 }
 
 ViewDonationProject.defaultProps = {
-  theme: 'indigo'
+  theme: "indigo",
 };
 
 ViewDonationProject.propTypes = {
-  theme: PropTypes.string.isRequired
+  theme: PropTypes.string.isRequired,
 };
 
 export default ViewDonationProject;

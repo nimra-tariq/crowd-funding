@@ -11,7 +11,7 @@ module.exports = {
       },
       height:{
         'hero-height':"100vh",
-      }
+      },
     },
   },
   plugins: [],
