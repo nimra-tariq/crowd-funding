@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 function ViewDonationProject(props) {
   //contract hook
   const { requests } = useTotalRequests();
-  //state var for handling hydration issues of requests hook on preRender and firstRender
+  //state var for handling hydration issues of mismatching between requests hook on preRender and firstRender
   const [reqs, setReqs] = useState("0");
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function ViewDonationProject(props) {
 
   return (
     <section className="text-gray-400 bg-gray-900 body-font  lg:h-hero-height">
-      <div className="container bg-gray-900 px-5 py-24 mx-auto flex flex-wrap">
+      <div className="container bg-gray-900 px-5 py-24 mx-auto flex flex-wrap justify-center">
         <div className="flex  flex-col text-center w-full mb-20">
           <h2
             className={`text-xs text-${props.theme}-400 tracking-widest font-medium title-font mb-1`}
